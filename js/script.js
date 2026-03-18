@@ -14,6 +14,22 @@ async function loadData(generation){
         loadData(selecteur.value);
     });
 
+    let buttons = document.querySelectorAll('#types button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.getAttribute('data-type');
+            if (button.classList.contains('active')) {
+                button.classList.remove('active');
+                loadData(selecteur.type);
+            } else {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filteredData = data.filter(pokemon => pokemon.types.some(t => t.name === type));
+                displayData(filteredData);
+            }
+        });
+    });
+
     function getTypeColor(typeName) {
         switch (typeName) {
             case 'Plante':
@@ -21,7 +37,7 @@ async function loadData(generation){
             case 'Feu':
                 return '#fb8b36';
             case 'Eau':
-                return '#4999f5';
+                return '#0077ff';
             case 'Poison':
                 return '#c800ff';
             case 'Vol':
@@ -29,23 +45,23 @@ async function loadData(generation){
             case 'Insecte':
                 return '#9ec530';
             case 'Électrik':
-                return '#fbed6b';
+                return '#f5df19';
             case 'Sol':
-                return '#553423';
+                return '#a44413';
             case 'Fée':
                 return '#f68af2'
             case 'Combat':
-                return '#a14406';
+                return '#0a047c';
             case 'Psy':
                 return '#f87078'
             case 'Roche':
                 return '#c4b987';
             case 'Glace':
-                return '#0e067d'
+                return '#16f0e6'
             case 'Acier':
                 return '#365f6d';
             case 'Spectre':
-                return '#859eaf';
+                return '#426b86';
             case 'Dragon':
                 return '#a0b40a';
             case 'Ténèbres':
@@ -53,6 +69,7 @@ async function loadData(generation){
             default:
                 return '#757575';
         }
+        
     }
 
     const main = document.querySelector('main');

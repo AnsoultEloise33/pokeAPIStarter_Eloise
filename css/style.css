@@ -152,3 +152,8 @@ select {
 #types > div img {
   width: 100%;
 }
+
+#types button.active {
+  border: 3px solid white;
+  transform: scale(1.2);
+}
